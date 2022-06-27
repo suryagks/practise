@@ -1,0 +1,63 @@
+<div class="card container">
+    <h3 class="text-center"> Add Post</h3>
+    <form [formGroup]="PostForm" (ngSubmit)=SaveData()>
+        <div class="mb-3">
+            <label for="postLocation" class="form-label">Post Location</label>
+            <input type="text" class="form-control" id="postLocation" formControlName="postLocation"
+            placeholder="Village/Mandal/Division" list="locationData">
+            <datalist id="locationData" >
+              <option *ngFor="let item of locations">{{item.villageName}}</option>
+            </datalist>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" formControlName="address"
+            rows="2" placeholder="Add Address"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="postDescription" class="form-label">Post Description</label>
+            <textarea class="form-control" id="postDescription" formControlName="postDescription"
+            rows="4" placeholder="Post Description">
+            </textarea>
+          </div>
+          <div class="mb-3 text-right">
+            <input id="file-upload" type="file" hidden #FileInput accept="video/*,image/*" 
+            (change)="handleFileInput($event.target)" formControlName="attachments"/>
+            <span class="image cursor-pointer" (click)="FileInput.click()">
+            <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Image
+            </span>&nbsp;&nbsp;&nbsp;
+            <span class="Video cursor-pointer" (click)="FileInput.click()">
+                <i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;Video
+            </span>
+            <!-- &nbsp;&nbsp;&nbsp; -->
+            <!-- <span class="Poll cursor-pointer">
+                <i class="fa fa-align-left" aria-hidden="true"></i>&nbsp;Poll
+            </span> -->
+          </div>
+          <div class="mb-3">
+            <label for="poll" class="form-label">Poll</label>&nbsp;&nbsp;
+            <p (click)="AddPoll()">Add Poll Option &nbsp;<i class="fa fa-plus" aria-hidden="true"></i></p>
+              <!-- New table poll -->
+              <table formArrayName="Poll"> 
+                <tr *ngFor="let item of polls().controls|slice:0:10; let i=index" [formGroupName]="i">  
+                  <td class="mb-3">  
+                      <input type="text" formControlName="poll" class="form-control" [placeholder]="pollOption(i)">  
+                  </td>  
+                  <td>  
+                      <button (click)="RemovePoll(i)" class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>  
+                  </td>  
+                </tr>  
+              </table>
+              <!-- end table -->
+          </div>
+          <!-- <p (click)="RemovePoll()">Remove Poll Option</p> -->
+        <button type="submit" class="btn btn-primary">Add</button>
+   </form>
+   <p *ngIf="showSuccessMessage">Successfully posted</p>
+   <div *ngIf="showErrorMessage">
+     <p>There is some problem while posting.</p>
+     <p>{{FailedErrorDetails?.message}}</p>
+   </div>
+</div>

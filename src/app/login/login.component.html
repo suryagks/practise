@@ -1,0 +1,27 @@
+<div class='loginpage'>
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-center">
+                <div class="centeralignment">
+                    <div class="col-md-6 make-shawdow">
+                        <img src="assets/N.png" alt="Companylogo" class="mx-auto d-block"/>
+                        <form [formGroup]="loginDetails" (ngSubmit)="login()">
+                            <div class="mb-3">
+                              <label for="InputPhoneNumber" class="form-label">Phone Number</label>
+                              <input type="tel" class="form-control" id="InputPhoneNumber" aria-describedby="PhoneNumberHelp" formControlName="mobileNo">
+                            </div>
+                            <div class="mb-3">
+                              <label for="InputPin" class="form-label">Pin</label>
+                              <input type="password" class="form-control" id="InputPin" formControlName="pin">
+                            </div>
+                            <p *ngIf='invalidForm' class='text-danger'>Please enter the valid PhoneNumber and Pin</p>
+                            <p *ngIf="invalidCredentials" class="text-danger">Invalid Credentials</p>
+                            <button type="submit" class="btn btn-primary" [disabled]="!loginDetails.valid">Submit</button>
+                            <button type="button" class="btn btn-secondary m-3" (click)="cancel()">Cancel</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-6 text-center">
+              Post ID
+            </div>
+            <div class="col-md-6 text-center">
+                {{data.postId}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+              User ID
+            </div>
+            <div class="col-md-6 text-center">
+                {{data.userId}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+             User Name
+            </div>
+            <div class="col-md-6 text-center">
+                {{data.userName}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                Description
+            </div>
+            <div class="col-md-6 text-center">
+                {{data.text}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                Posted Content
+            </div>
+            <div class="col-md-6 text-center">
+                <ng-container *ngIf="data.postImages.length > 0; else second">
+                    <div *ngFor = "let image of data.postImages; index as j">
+                     <img [src] = image style="width: 80%" alt="post image"/> 
+                    </div>
+                </ng-container>
+                <ng-template #second>
+                    <ng-container *ngIf="data.postVideos.length > 0; else third">
+                       <div *ngFor="let video of data.postVideos; index as k">
+                        <video width="500" height="500" controls>
+                            <source [src]= video type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                       </div> 
+                    </ng-container>
+                </ng-template>
+                <ng-template #third>
+                    <ng-container> No content  available</ng-container>
+                </ng-template>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                Village Name
+            </div>
+            <div class="col-md-6 text-center">
+                {{data.villageName}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                Date Time
+            </div>
+            <div class="col-md-6 text-center">
+                {{data.postTime | date :'MMM d, y, h:mm:ss a'}}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                Action
+            </div>
+            <div class="col-md-6 text-center">
+                <button class="btn btn-success m-1" (click) = approve()>Approve</button>
+                <button class="btn btn-secondary" (click) = decline()>Decline</button>
+            </div>
+        </div>
+        <p *ngIf="showMessage">Successfully performed the action</p>
+    </div> 
+</div>

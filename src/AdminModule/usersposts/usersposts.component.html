@@ -1,0 +1,48 @@
+<p *ngIf="showMessage">Action Successfully</p>
+<div class="container card">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Post ID</th> 
+        <th scope="col">User Name</th>
+        <th scope="col">Posted Content</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let post of postData; index as i">
+        <td><a [routerLink]="['./postdetails', {data:post | json}]">{{post.postId}}</a></td>
+        <td> <img [src]=post.profilePic class="mr-2" style="width: 20px">
+            <span>{{ post.userName }}</span></td>
+        <td> 
+            <b>posted Date:</b> {{post.postTime | date :'MMM d, y, h:mm:ss a'}}
+            <br>
+            <b>Description:</b> {{ post.text }}
+            <ng-container *ngIf="post.postImages.length > 0; else second">
+                <div *ngFor = "let image of post.postImages; index as j">
+                <img [src] = image style="width:100px; height:100px" alt="post image"/> 
+                </div>
+            </ng-container>
+            <ng-template #second>
+                <ng-container *ngIf="post.postVideos.length > 0; else third">
+                <div *ngFor="let video of post.postVideos; index as k">
+                    <video width="100" height="100" controls>
+                        <source [src]= video type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div> 
+                </ng-container>
+            </ng-template>
+            <ng-template #third>
+                <ng-container> No content  available</ng-container>
+            </ng-template>
+        </td>
+        <!-- <td>{{post.postTime | date :'MMM d, y, h:mm:ss a'}}</td> -->
+        <td>
+            <button class="btn btn-success m-1" (click) = approve(post)>Approve</button>
+            <button class="btn btn-secondary m-1" (click) = decline(post)>Decline</button>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+</div>

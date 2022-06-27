@@ -1,0 +1,55 @@
+<div class="card container">
+  <h3 class="text-center"> Update Profile</h3>
+  <form [formGroup]="UpdateForm" (ngSubmit)=SaveData>
+    <div class="mb-3">
+      <label for="updateProfile" class="form-label">Firstname</label>
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+    </div>
+    <div class="mb-3">
+      <label for="updateProfile" class="form-label">Lastname</label>
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+    </div>
+    <div class="mb-3">
+      <label for="updateProfile" class="form-label">Emailid</label>
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+    </div>
+    <div class="mb-3">
+      <label for="updateProfile" class="form-label">Mobileno</label>
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+    </div>
+
+    <div class="mb-3">
+      <label for="updateProfile" class="form-label">Date Of Birth</label>
+      <input type="date" class="form-control" id="startDate" formControlName="startDate">
+    </div>
+    <div class="mb-3">
+      <label for="genderLocation" class="form-label"> Gender</label>
+      <input type="text" class="form-control" id="genderLocation" formControlName="genderLocation"
+      placeholder="" list="">
+      <datalist id="genderLocation">
+        <option *ngFor="let item of gender"{{item.gender}}></option>
+      </datalist>
+    </div>
+
+    <div class="mb-3">
+      <label for="postLocation" class="form-label">Post Location</label>
+      <input type="text" class="form-control" id="postLocation" formControlName="postLocation"
+      placeholder="Village/Mandal/Division" list="locationData">
+      <datalist id="locationData" >
+        <option *ngFor="let item of locations">{{item.villageName}}</option>
+      </datalist>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <textarea class="form-control" id="address" formControlName="address"
+      rows="2" placeholder="Add Address"></textarea>
+    </div>
+    <div class="text-right" >
+    <button type="submit" class="btn btn-secondary">Update</button>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </div>
+
+  </form>
+</div>

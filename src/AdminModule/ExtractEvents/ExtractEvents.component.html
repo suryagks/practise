@@ -1,0 +1,18 @@
+<div class="card container">
+    <h3 class="text-center"> Upload Events Excel</h3>
+    <form [formGroup]="EventsForm" (ngSubmit)=uploadExcel()>
+      <div class="mb-3">
+        <label for="excel" class="form-label">Excel</label>
+        <input type="file" accept= ".xls,.xlsx" class="form-control" id="excel" aria-describedby="InputYoutubeTexthelper" formControlName="excel" 
+        (change) = fileUpload($event)>
+      </div>
+        <p *ngIf='!isFormValid' class='text-danger'>Please enter the valid image</p>
+        <p>{{statusMessage}}</p>
+        <button type="submit" class="btn btn-primary" [disabled]="!EventsForm.valid">Submit</button>
+   </form>
+   <p *ngIf="showSuccessMessage">Successfully created the Events</p>
+   <div *ngIf="showErrorMessage">
+     <p>There is some problem while creating the Event</p>
+     <p>{{FailedErrorDetails?.message}}</p>
+   </div>
+</div>

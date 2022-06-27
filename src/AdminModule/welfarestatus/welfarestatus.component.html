@@ -1,0 +1,93 @@
+<div class="card container">
+<h3 class="text-center">Welfare Percentage</h3>
+<br>
+<div class="row">
+  <div class="mb-3">
+    <label for="postLocation" class="form-label">AddVillage</label>
+    <input type="text" class="form-control" id="postLocation"
+            placeholder="" list="locationData">
+            <datalist id="locationData" >
+              <option *ngFor="let item of locations">{{item.villageName}}</option>
+            </datalist>
+   </div>
+</div>
+<br>
+<div class="row">
+  <div class="mb-3">
+    <label for="postLocation" class="form-label">Welfare Type</label>
+    <input type="text" class="form-control" id="postLocation1"
+            placeholder="" list="welfareData">
+            <datalist id="welfareData" >
+              <option *ngFor="let item of welfareTypes">{{item.welfareType}}</option>
+            </datalist>
+   </div>
+</div>
+<br >
+
+<div class="row">
+  <div class="col-md-4">
+    <div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <strong>Completed</strong>
+  </div>
+      <circle-progress class="circle__progress" [percent]="completedPercent" [animation]="true" [animationDuration]="300"
+      [startFromZero]="true" [showInnerStroke]="true" [titleFontSize]="'20'" [titleFontWeight]="'800'"
+      [unitsFontSize]="'20'"[unitsFontWeight]="'800'" [subtitle]="'Progress'" [subtitleFontSize]="'12'"
+      [lazy]="false" [backgroundColor]= "'teal'" [backgroundPadding]= "8" [radius]= "60" [space]= "-15"
+      [maxPercent]= "100" [unitsColor]= "'#ffffff'" [outerStrokeWidth]= "7.5" [outerStrokeColor]= "'white'"
+      [innerStrokeColor]= "'teal'" [innerStrokeWidth]= "3" [titleColor]= "'#ffffff'" [subtitleColor]= "'#ffffff'">
+      </circle-progress>
+      <div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong>Count:0</strong>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong>Amount:0</strong>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <strong>Progress</strong>
+  </div>
+      <circle-progress class="circle__progress" [percent]="progressPercent" [animation]="true" [animationDuration]="300"
+      [startFromZero]="true" [showInnerStroke]="true" [titleFontSize]="'20'" [titleFontWeight]="'800'"
+      [unitsFontSize]="'20'"[unitsFontWeight]="'800'" [subtitle]="'Progress'" [subtitleFontSize]="'12'"
+      [lazy]="false" [backgroundColor]= "'teal'" [backgroundPadding]= "8" [radius]= "60" [space]= "-15"
+      [maxPercent]= "100" [unitsColor]= "'#ffffff'" [outerStrokeWidth]= "7.5" [outerStrokeColor]= "'white'"
+      [innerStrokeColor]= "'teal'" [innerStrokeWidth]= "3" [titleColor]= "'#ffffff'" [subtitleColor]= "'#ffffff'">
+      </circle-progress>
+      <div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong>Count:0</strong>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong>Amount:0</strong>
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <strong>Yet to start</strong>
+  </div>
+      <circle-progress class="circle__progress" [percent]="notStartedPercent" [animation]="true" [animationDuration]="300"
+      [startFromZero]="true" [showInnerStroke]="true" [titleFontSize]="'20'" [titleFontWeight]="'800'"
+      [unitsFontSize]="'20'"[unitsFontWeight]="'800'" [subtitle]="'Progress'" [subtitleFontSize]="'12'"
+      [lazy]="false" [backgroundColor]= "'teal'" [backgroundPadding]= "8" [radius]= "60" [space]= "-15"
+      [maxPercent]= "100" [unitsColor]= "'#ffffff'" [outerStrokeWidth]= "7.5" [outerStrokeColor]= "'white'"
+      [innerStrokeColor]= "'teal'" [innerStrokeWidth]= "3" [titleColor]= "'#ffffff'" [subtitleColor]= "'#ffffff'">
+      </circle-progress>
+      <div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong>Count:0</strong>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong>Amount:0</strong>
+      </div>
+  </div>
+</div>
+
+<br>
+<a routerLink="../addwelfare">Add Welfare Scheme</a>
+</div>
+

@@ -1,0 +1,67 @@
+<div class="card container">
+    <h3 class="text-center"> Add Event</h3>
+    <form [formGroup]="EventForm" (ngSubmit)=SaveData()>
+        <div class="mb-3">
+            <label for="eventTitle" class="form-label">Event Title</label>
+            <input type="text" class="form-control" id="eventTitle" placeholder="Event Title" formControlName="eventTitle">
+          </div>
+          <div class="mb-3">
+            <label for="eventCategory" class="form-label">Event Category</label>
+            <select class="form-control" id="eventCategory" formControlName="eventCategory" placeholder="Event Category">
+                <option *ngFor="let item of eventCategory" value={{item.Id}}>{{item.category}}</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="eventPlace" class="form-label">Event Place</label>
+            <input type="text" class="form-control" id="eventPlace" formControlName="eventPlace"
+            placeholder="Village/Mandal/Division" list="locationData">
+            <datalist id="locationData" >
+                <option *ngFor="let item of locations">{{item.villageName}}</option>
+              </datalist>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" formControlName="address"
+            rows="2" placeholder="Add Address"></textarea>
+          </div>
+          <div class="row mb-3">
+              <div class="col-6">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="startDate" formControlName="startDate">
+              </div>
+              <div class="col-6">
+                <label for="EndDate" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="EndDate" formControlName="EndDate">
+              </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-6">
+              <label for="startTime" class="form-label">Start Time</label>
+              <input type="time" class="form-control" id="startTime" formControlName="startTime">
+            </div>
+            <div class="col-6">
+              <label for="EndTime" class="form-label">End Time</label>
+              <input type="time" class="form-control" id="EndTime" formControlName="EndTime">
+            </div>
+        </div>
+          <div class="mb-3">
+            <label for="eventDescription" class="form-label">Event Description</label>
+            <textarea class="form-control" id="eventDescription" formControlName="eventDescription"
+            rows="4" placeholder="Event Description">
+            </textarea>
+          </div>
+          <div class="mb-3">
+            <input id="file-upload" type="file" hidden #FileInput accept="image/*" 
+            (change)="handleFileInput($event.target)" formControlName="attachments"/>
+            <span class="image cursor-pointer" (click)="FileInput.click()">
+            <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Image
+            </span>
+          </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+   </form>
+   <p *ngIf="showSuccessMessage">Event created successfully</p>
+   <div *ngIf="showErrorMessage">
+     <p>There is some problem while posting.</p>
+     <p>{{FailedErrorDetails?.message}}</p>
+   </div>
+</div>

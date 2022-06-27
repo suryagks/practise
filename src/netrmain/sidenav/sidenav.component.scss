@@ -1,0 +1,74 @@
+.sidenav[data-background-color="red"]{
+    background-color: #083476;
+}
+.sidenav
+{
+    height:100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 300px;
+    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    .div-background 
+    {
+        background-image: url(../../assets/sidnavbg.jpg);
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: 50%;
+        opacity: .2;
+    }
+    .nav {
+        color:white;
+        text-align: left;
+        margin: 25px 0 10px 20px;
+        z-index:10;
+        position:relative;
+        div {
+            a{
+                color:white;
+            }
+        }
+        .nav-option
+        {
+          svg {
+            height: 30px;
+            width: 20px;
+            margin: 10px;
+          }   
+            .parent {
+                cursor: pointer;
+                vertical-align: middle;
+                font-size: 20px;
+            }
+            .children {
+                
+                margin-left: 35px;
+                svg {
+                    margin:5px;
+                }
+            }
+            .toggle {
+                display:none;
+            }
+        }
+      
+    }
+}
+
+@media (max-width: 600px) {  
+ .sidenav
+ {
+   top: 53px;
+ }
+}
+.toggle {
+    display:block;
+}

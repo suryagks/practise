@@ -1,0 +1,87 @@
+  <div class="card container">
+    <h3 class="text-center">Add Complaint</h3>
+    <br>
+    <div class="row" *ngIf = "!isComplaintType">
+        <form [formGroup]="ComplaintForm" (ngSubmit)=SaveData()>
+            <div class="mb-3">
+                <label for="ComplaintType" class="form-label">Complaint Type</label>
+                <input type="text" class="form-control" id="ComplaintType" placeholder="Complaint Type" 
+                formControlName="ComplaintType">
+              </div>
+              <div class="mb-3">
+                <label for="firstNamae" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstNamae" placeholder="First Name" 
+                formControlName="firstNamae">
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Last Name" 
+                formControlName="lastName">
+              </div>
+              <div class="mb-3">
+                <label for="MobileNumber" class="form-label">Mobile No.</label>
+                <input type="tel" class="form-control" id="MobileNumber" placeholder="Mobile Number" 
+                formControlName="MobileNumber">
+              </div>
+              <div class="mb-3">
+                <label for="EmailId" class="form-label">Email Id</label>
+                <input type="email" class="form-control" id="EmailId" placeholder="Email Id" 
+                formControlName="EmailId">
+              </div>
+              <div class="mb-3">
+                <label for="postLocation" class="form-label">Location</label>
+                <input type="text" class="form-control" id="postLocation" formControlName="postLocation"
+                placeholder="Village/Mandal/Division" list="locationData">
+                <datalist id="locationData" >
+                    <option *ngFor="let item of locations">{{item.villageName}}</option>
+                  </datalist>
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" formControlName="address"
+                rows="2" placeholder="Add Address"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="Description" class="form-label">Description</label>
+                <textarea class="form-control" id="Description" formControlName="Description"
+                rows="4" placeholder="Description">
+                </textarea>
+              </div>
+              <div class="mb-3">
+                <input id="file-upload" type="file" hidden #FileInput accept="image/*" 
+                (change)="handleFileInput($event.target)" formControlName="attachments"/>
+                <span class="image cursor-pointer" (click)="FileInput.click()">
+                <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Image
+                </span>
+              </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+       </form>
+       <p *ngIf="showSuccessMessage">Complaint created successfully</p>
+       <div *ngIf="showErrorMessage">
+         <p>There is some problem while posting.</p>
+         <p>{{FailedErrorDetails?.message}}</p>
+       </div>
+    </div>
+    <div class="row" *ngIf = "isComplaintType">
+        <div class="col-md-2">
+            <img src="http://backend.myvdoc.in:5000/netr/complaint/complaintImages/Electricity-1f18.jpg" 
+            alt="Electricity" height="100px" width="100px" (click)="setComplaintType('Electricity')">
+        </div>
+        <div class="col-md-2">
+            <img src="http://backend.myvdoc.in:5000/netr/complaint/complaintImages/Sewage-93310.jpg" 
+            alt="Sewage" height="100px" width="100px" (click)="setComplaintType('Sewage')">
+        </div>
+        <div class="col-md-2">
+            <img src="http://backend.myvdoc.in:5000/netr/complaint/complaintImages/Floods-c705.jpg" 
+            alt="Floods" height="100px" width="100px" (click)="setComplaintType('Floods')">
+        </div>
+        <div class="col-md-2">
+            <img src="http://backend.myvdoc.in:5000/netr/complaint/complaintImages/Fire-b255.jpg" 
+            alt="Fire" height="100px" width="100px" (click)="setComplaintType('Fire')">
+        </div>
+        <div class="col-md-2">
+            <img src="http://backend.myvdoc.in:5000/netr/complaint/complaintImages/Water-8376.jpg" 
+            alt="Water" height="100px" width="100px" (click)="setComplaintType('Water')">
+        </div>
+    </div>
+</div>

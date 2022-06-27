@@ -1,0 +1,92 @@
+ <div class="card container">
+ <h3 class="text-left">Add Welfare Scheme</h3>
+ <br>
+ <br>
+ <form [formGroup]="WelfareForm" (ngSubmit)=SaveData()>
+  <div class="row">
+    <label for="Welfare" class="col-sm-2 form-label">Welfare Type</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" list="welfareDatalist" placeholder=""
+      formControlName="WelfareType" id="Welfare">
+      <datalist id="welfareDatalist" >
+        <option *ngFor="let item of welfareTypes">{{item.welfareType}}</option>
+      </datalist>
+    </div>
+      
+      </div>
+  <br>
+  <div class="row">
+    <label for="FirstName" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="firstName" placeholder=""
+      formControlName="firstNamae">
+    </div>
+  </div>
+  <br>
+  <div class=" row">
+    <label for="LastName" class="col-sm-2 col-form-label">lastName</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="lastName" placeholder=""
+      formControlName="lastName">
+    </div>
+  </div>
+  <br>
+  <div class=" row">
+    <label for="MobileNumber" class="col-sm-2 col-form-label">MobileNumber</label>
+    <div class="col-sm-10">
+      <input type="tel" class="form-control" id="mobileNumber" placeholder=""
+      formControlName="MobileNumber">
+    </div>
+  </div>
+  <br>
+  <div class=" row">
+    <label for="EmailId" class="col-sm-2 col-form-label">EmailId</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="email" placeholder=""
+      formControlName="EmailId">
+    </div>
+  </div>
+  <br>
+  <div class=" row">
+    <label for="location" class="col-sm-2 col-form-label">Location</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="postLocation" formControlName="postLocation"
+                placeholder="Village/Mandal/Division" list="locationData">
+                <datalist id="locationData" >
+                    <option *ngFor="let item of locations">{{item.villageName}}</option>
+                  </datalist>
+    </div>
+  </div>
+  <br> 
+   <div class="form-group row">
+    <label for="address" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="address" formControlName="address"
+      rows="2" placeholder="Add Addesss"></textarea>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="postDescription" class="form-label"> Description</label>
+    <textarea class="form-control" id="Description" formControlName="Description"
+    rows="4" placeholder="Post Description">
+    </textarea>
+  </div>
+  <div class="mb-3 text-left">
+    <input id="file-upload" type="file" hidden #FileInput accept="video/*,image/*" 
+    (change)="handleFileInput($event.target)"/>
+    <span class="image cursor-pointer" (click)="FileInput.click()">
+    <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Image
+    </span>
+  </div>
+  <div class="text-right">
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+<br>
+
+<p *ngIf="showSuccessMessage">Complaint created successfully</p>
+       <div *ngIf="showErrorMessage">
+         <p>There is some problem while posting.</p>
+         <p>{{FailedErrorDetails?.message}}</p>
+       </div>
+</div>

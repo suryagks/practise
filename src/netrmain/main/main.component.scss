@@ -1,0 +1,49 @@
+.main-panel {
+    position: relative;
+    float: right;
+    width: calc(100% - 300px);
+}
+.header 
+{
+    text-align: right;
+    padding: 15px;
+    a 
+    {
+        text-decoration: underline;
+        cursor: pointer;
+        color: #0a58ca;
+    }
+}
+header{
+    height:50px;
+    width:100%;
+    background-color: white; 
+    svg {
+        height: inherit;
+    }
+    .ham {
+        padding:11px;
+    }
+    .close 
+    {
+       padding: 11px;
+    }
+    .toggle
+    {
+        display:none;
+    }
+}
+
+@media (max-width: 600px) {  
+    .main-panel 
+    {
+       float: initial;
+       width: 80%;
+       margin:0 auto;
+    }
+    .showHidesidenav{
+        display:none;
+    }
+}
+
+  

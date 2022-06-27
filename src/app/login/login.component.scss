@@ -1,0 +1,18 @@
+.loginpage{
+    background-image: url("../../assets/loginbackground.jpg");
+    height:100vh;
+    .centeralignment{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 80vh;
+    }
+   .make-shawdow {
+    padding: 60px;
+    background-color: white;
+    border: 1px solid #8a8aa842;
+    border-radius: 8px;
+    box-shadow: 10px 10px 13px #80808070;
+   }
+}

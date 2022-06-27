@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="mb-3">
+        <label for="postLocation" class="form-label"></label>
+        <input type="text" class="form-control" id="postLocation" 
+        (ngModelChange)="loadLocations($event)" placeholder="Enter search words" 
+        list="locationData" [(ngModel)]="searchTxt">
+       
+        <div *ngIf="locations != undefined">
+            <ul *ngFor="let item of locations">
+                <li>{{item.firstName}}</li>
+                <li>{{item.mobileNo}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

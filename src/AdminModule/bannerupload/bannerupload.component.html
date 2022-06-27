@@ -1,0 +1,54 @@
+<div class="card container">
+  <div>
+      <h3 class="text-center"> Upload Banner Image</h3>
+      <form [formGroup]="bannerUploadForm" (ngSubmit)=uploadBannerImage()>
+        <div class="col-md-12 mt-5">
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="bannerImage" class="form-label">Banner Image</label>
+              <input type="file" accept= "image/*" class="form-control" id="bannerImage" aria-describedby="InputYoutubeTexthelper" formControlName="image" (change) = fileUpload($event)>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="redirectURL" class="form-label">Redirect URL</label>
+              <input type="text" class="form-control" id="redirectURL" aria-describedby="InputYoutubeTexthelper" formControlName="redirectURL" placeholder="Enter redirect URL for Image">
+            </div>
+          </div>
+        </div>
+          <p *ngIf='!isFormValid' class='text-danger'>Please enter the valid image</p>
+          <button type="submit" class="btn btn-primary" [disabled]="!bannerUploadForm.valid">Submit</button>
+    </form>
+    <div *ngIf="successMessage">
+      <p>Successfully added the post</p>
+    </div>
+    <div *ngIf="errorMessage">
+      <p>Post upload is unsuccessfull</p>
+    </div>
+  </div>
+  <div class="list-all mt-5">
+    <p *ngIf="ifError">Something went wrong please try again!</p>
+      <p *ngIf="tableData.length==0">No data available!</p>
+      <p *ngIf="deleteSuccess">Successfully deleted the Item</p>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+          <th scope="col">ID</th> 
+          <th scope="col">Image</th>
+          <th scope="col">Redirect URL</th>
+          <th scope="col">location</th>
+          <th scope="col">Action</th>
+      </tr>
+      </thead>
+      
+      <tbody>
+      <tr *ngFor="let post of tableData; index as i">
+          <td>{{post?.Id}}</td>
+          <td><img [src]="post.imagePath" class="mr-2" style="width: 100px; height: 80px;"></td>
+          <td><a [href]= "post.redirectUrl" target="_blank">redirect Url</a></td>
+          <td>{{post.location}}</td>
+          <td><button class="btn btn-secondary m-1 btn-danger" (click) = delete(post)>Delete</button></td>
+      </tr>
+      </tbody>
+      </table>
+  </div>
+</div>
+  
