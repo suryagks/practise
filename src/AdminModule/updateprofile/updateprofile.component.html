@@ -1,21 +1,21 @@
-<div class="card container">
+<div class="card-container">
   <h3 class="text-center"> Update Profile</h3>
-  <form [formGroup]="UpdateForm" (ngSubmit)=SaveData>
+  <form [formGroup]="UpdateForm" (ngSubmit)=ConfirmSaveData()>
     <div class="mb-3">
       <label for="updateProfile" class="form-label">Firstname</label>
-            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="Firstname">
     </div>
     <div class="mb-3">
       <label for="updateProfile" class="form-label">Lastname</label>
-            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="Lastname">
     </div>
     <div class="mb-3">
       <label for="updateProfile" class="form-label">Emailid</label>
-            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="Emailid">
     </div>
     <div class="mb-3">
       <label for="updateProfile" class="form-label">Mobileno</label>
-            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="updateProfile">
+            <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="Mobileno">
     </div>
 
     <div class="mb-3">
@@ -52,4 +52,9 @@
   </div>
 
   </form>
+  <p *ngIf="showSuccessMessage">Successfully Updated</p>
+   <div *ngIf="showErrorMessage">
+     <p>There is some problem while updating.</p>
+     <p>{{FailedErrorDetails?.message}}</p>
+   </div>
 </div>
