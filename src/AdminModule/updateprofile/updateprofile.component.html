@@ -47,11 +47,11 @@
     <div class="text-right" >
     <button type="submit" class="btn btn-secondary">Update</button>
   </div>
-  <div class="text-center">
-    <button type="submit" class="btn btn-danger">Delete</button>
-  </div>
 
   </form>
+  <div class="text-center">
+    <button type="buttom" (click)="deleteUser()" class="btn btn-danger">Delete</button>
+  </div>
   <p *ngIf="showSuccessMessage">Successfully Updated</p>
    <div *ngIf="showErrorMessage">
      <p>There is some problem while updating.</p>

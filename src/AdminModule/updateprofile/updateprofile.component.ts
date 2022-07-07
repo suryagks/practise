@@ -99,6 +99,24 @@ export class UpdateprofileComponent implements OnInit {
     });
   
  }
+ deleteUser(){
+  const userDetails = localStorage.getItem("user");
+  const userID = userDetails != null ? JSON.parse(userDetails).userId: "";
+  if (confirm("Are you sure you want to Delete ?") == true) {
+    const dataToSendFormObj = {"userId":userID};
+    this.backendCallService.httpPost(dataToSendFormObj,`/netr/auth/deleteUser`).subscribe((x:any) => {
+      if(x instanceof Error) {
+        this.showErrorMessage = true;
+        this.showSuccessMessage =  false;
+        this.FailedErrorDetails = x;
+      }
+      else{
+        this.showSuccessMessage =  true;
+           this.showErrorMessage = false;
+      }
+    });
+  }
+ }
  deleteDetails(post:any){
   this.backendCallService.httpGet(`/netr/adds/deleteAdd/${post.Id}?apiVersion=1`).subscribe((x:any)=> {
     if(x instanceof Error) {
