@@ -1,3 +1,4 @@
+import { UserDetailsComponent } from './user-details/user-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/AuthService/auth.guard';
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'welfarestatus',component:WelfarestatusComponent},
   {path: 'addwelfare',component:AddWelfareComponent},
   {path: 'updateprofile',component:UpdateprofileComponent},
+  {path: 'userdetails', component:UserDetailsComponent},
   {path: '',component:YoutubeuploadComponent}
 ];
 

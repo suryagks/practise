@@ -16,6 +16,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { WelfarestatusComponent } from './welfarestatus/welfarestatus.component';
 import { AddWelfareComponent } from './add-welfare/add-welfare.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 
@@ -34,7 +35,7 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
     WelfarestatusComponent,
     AddWelfareComponent,
     UpdateprofileComponent,
-
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,
