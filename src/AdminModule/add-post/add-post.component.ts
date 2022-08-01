@@ -18,7 +18,6 @@ export class AddPostComponent implements OnInit {
   });
   fileToUpload:any;
   locations:villageDetails[];
-  activeposts:any;
   showSuccessMessage= false;
   showErrorMessage=false;
   FailedErrorDetails: any;
@@ -30,7 +29,7 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLocations();
-    this.GetActivePost();
+    
   }
   loadLocations(){
     this.backendCallService.httpPost("",'/netr/village/getAllVillages?apiVersion=1').subscribe(x=> {
@@ -40,19 +39,6 @@ export class AddPostComponent implements OnInit {
       }
        
     });
-  }
-  GetActivePost(){
-    const userDetails = localStorage.getItem("user");
-    const userID = userDetails != null ? JSON.parse(userDetails).userId: "";
-    this.backendCallService.httpGet('/netr/post/getActivePosts/'+userID+'?apiVersion=1&skip=1&type=1').subscribe(x=> {
-      if(x instanceof Error) {
-        console.log("GetActivePosts APi Error !!")
-      }
-      else{
-        this.activeposts = x['data'];
-      console.log(this.activeposts);
-      }
-    })
   }
   SaveData(){
     // console.log(this.PostForm);
@@ -70,7 +56,7 @@ export class AddPostComponent implements OnInit {
     villageid = villageid ? villageid : 0;
     dataToSendFormObj.append("villageId",villageid.toString());
     dataToSendFormObj.append("status","2");
-    dataToSendFormObj.append("isDevelopmentPost","1");
+    dataToSendFormObj.append("isDevelopmentPost","0");
     
     if(this.fileToUpload){
       console.log(this.fileToUpload)
