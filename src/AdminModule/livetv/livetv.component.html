@@ -1,0 +1,14 @@
+<div class="card-container">
+    <h3 class="text-center">Live TV</h3>
+    <br>
+    <span *ngFor="let channel of livetvchannels">
+        <img src="{{channel.livetvThumbnail}}" alt="thumbnail" width="100" height="100" (click)="ChangeChannel(channel.livetvUrl)">
+    </span>
+    <br><br><br>
+    <div class="text-center">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Q0eu7HCRBgw?controls=0" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+import { LivetvComponent } from './livetv/livetv.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path: 'addwelfare',component:AddWelfareComponent},
   {path: 'updateprofile',component:UpdateprofileComponent},
   {path: 'userdetails', component:UserDetailsComponent},
-  {path: '',component:YoutubeuploadComponent}
+  {path: '',component:YoutubeuploadComponent},
+  {path:'livetv',component:LivetvComponent}
 ];
 
 @NgModule({
