@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { BackendcallService } from 'src/app/services/backendcall.service';
 
 @Component({
@@ -9,8 +10,12 @@ import { BackendcallService } from 'src/app/services/backendcall.service';
 export class LivetvComponent implements OnInit {
 
   livetvchannels :any= [];
-  currenttv: string = "";
-  constructor(private backendCallService: BackendcallService) { }
+  currenttv: SafeResourceUrl = "";
+  livetvUrl: string = "";
+  constructor(private backendCallService: BackendcallService,
+    private domSanitizer: DomSanitizer) { 
+      this.currenttv =  this.domSanitizer.bypassSecurityTrustResourceUrl("");
+    }
 
   ngOnInit(): void {
     this.backendCallService.httpGet(`/netr/livetv/getlivetv/1?apiVersion=1`).subscribe((x:any)=> {
@@ -25,8 +30,11 @@ export class LivetvComponent implements OnInit {
     });
   }
   ChangeChannel(livetvUrl: string){
- this.currenttv = livetvUrl;
- console.log(this.currenttv)
+   const tv =  "https://www.youtube.com/embed/"+livetvUrl;
+   this.livetvUrl = livetvUrl;
+   this.currenttv = tv;
+    this.currenttv = this.domSanitizer.bypassSecurityTrustResourceUrl(tv);
+    console.log(this.currenttv)
   }
 
 }
