@@ -7,9 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
+  userRole  = "";
   constructor() { }
 
   ngOnInit(): void {
+    const userDetails = localStorage.getItem("user");
+    this.userRole = userDetails != null ? JSON.parse(userDetails).roleName: "";
   }
-  
+  CheckAdmin(){
+    return this.userRole === "Admin" || this.userRole === "MLA";
+  }
 }
