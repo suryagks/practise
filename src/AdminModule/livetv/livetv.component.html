@@ -38,11 +38,11 @@
             <td>{{tv.livetvTitle}}</td>
             <td> <img [src]="tv.livetvThumbnail" class="mr-2" style="width: 60px">
             <td>
-             <b>Link:</b> <a [href]=tv.youtubeLink alt="youtubeLink">{{tv.livetvUrl}}</a>
+             <b>Link:</b> <a [href]=tv.livetvUrl alt="youtubeLink">{{tv.livetvUrl}}</a>
             </td>
             <td>
-              <button class="btn btn-success m-1" (click) = Edit()>Edit</button>
-              <button type="buttom" (click)="deleteUser()" class="btn btn-danger">Delete</button>
+              <button class="btn btn-success m-1" (click) = Edit(tv)>Edit</button>
+              <button type="buttom" (click)="deleteUser(tv)" class="btn btn-danger">Delete</button>
 
             </td>
         </tr>

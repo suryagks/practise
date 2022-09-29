@@ -13,7 +13,7 @@ let userID = userDetails != null ? JSON.parse(userDetails).userId: "";
 })
 export class LivetvComponent implements OnInit {
 
-  livetvchannels :any= [];
+  livetvchannels :LiveTV[]= [];
   currenttv: SafeResourceUrl = "";
   livetvUrl: string = "";
   isFormValid: boolean = true;
@@ -80,6 +80,7 @@ export class LivetvComponent implements OnInit {
       else {
         console.log(x);
         this.livetvchannels = x.data;
+        this.livetvchannels  = this.livetvchannels.filter(x=>x.isActive == true);
       }
     });
   }
@@ -91,25 +92,52 @@ export class LivetvComponent implements OnInit {
     this.currenttv = this.domSanitizer.bypassSecurityTrustResourceUrl(tv);
     console.log(this.currenttv)
   }
-  Edit(){
-
+  Edit(Id : LiveTV){
+    const userDetails = localStorage.getItem("user");
+  const userID = userDetails != null ? JSON.parse(userDetails).userId: "";
+  if (confirm("Are you sure you want to Edit ?") == true) {
+    const dataToSendFormObj  = new FormData();
+    const formData = this.livetvchannelForm.value;
+    dataToSendFormObj.append("Id", Id.Id);
+    dataToSendFormObj.append("livetvTitle", Id.livetvTitle);
+    dataToSendFormObj.append("livetvMessage", Id.livetvMessage);
+    dataToSendFormObj.append("livetvUrl", Id.livetvUrl);
+    dataToSendFormObj.append("createdUser", userID);
+    dataToSendFormObj.append("updatedUser", userID);
+    dataToSendFormObj.append("versionFlag", "1");
+    dataToSendFormObj.append("livetvThumbnail", Id.livetvThumbnail);
+    dataToSendFormObj.append("status",'1'); 
+    this.backendCallService.httpPost(dataToSendFormObj,`/netr/livetv/update?apiVersion=1`).subscribe((x:any) => {
+      console.log(x);
+    });
   }
-  deleteUser(){
+  }
+  deleteUser(Id : LiveTV){
     const userDetails = localStorage.getItem("user");
   const userID = userDetails != null ? JSON.parse(userDetails).userId: "";
   if (confirm("Are you sure you want to Delete ?") == true) {
-    const dataToSendFormObj = {"userId":userID};
-    // this.backendCallService.httpPost(dataToSendFormObj,`/netr/auth/deleteUser`).subscribe((x:any) => {
-    //   if(x instanceof Error) {
-    //     this.showErrorMessage = true;
-    //     this.showSuccessMessage =  false;
-    //     this.FailedErrorDetails = x;
-    //   }
-    //   else{
-    //     this.showSuccessMessage =  true;
-    //        this.showErrorMessage = false;
-    //   }
-    // });
+    const dataToSendFormObj  = new FormData();
+    const formData = this.livetvchannelForm.value;
+    dataToSendFormObj.append("Id", Id.Id);
+    dataToSendFormObj.append("livetvTitle", Id.livetvTitle);
+    dataToSendFormObj.append("livetvMessage", Id.livetvMessage);
+    dataToSendFormObj.append("livetvUrl", Id.livetvUrl);
+    dataToSendFormObj.append("createdUser", userID);
+    dataToSendFormObj.append("updatedUser", userID);
+    dataToSendFormObj.append("versionFlag", "1");
+    dataToSendFormObj.append("livetvThumbnail", Id.livetvThumbnail);
+    dataToSendFormObj.append("status",'1'); 
+    this.backendCallService.httpPost(dataToSendFormObj,`/netr/livetv/update?apiVersion=1`).subscribe((x:any) => {
+      console.log(x);
+    });
   }
   }
+}
+export interface LiveTV {
+  Id : string;
+  isActive : boolean;
+  livetvMessage : string;
+  livetvThumbnail : string;
+  livetvTitle: string;
+  livetvUrl : string;
 }
