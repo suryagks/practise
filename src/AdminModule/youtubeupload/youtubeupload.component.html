@@ -16,7 +16,7 @@
               <label for="linkType" class="form-label">Enter link Type</label>
               <select formControlName="linkType" class="form-control" >
                 <option value="">Select Link Type</option>
-                <option *ngFor="let type of youtubeLinkTypes" [ngValue]="type.Id"> {{type.Name}} </option>
+                <option *ngFor="let type of youtubeLinkTypes" [ngValue]="type.Id"> {{type.title}} </option>
               </select>
             </div>
         </div>
