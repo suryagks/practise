@@ -1,0 +1,38 @@
+<div class="card-container">
+    <h3 class="text-center">Blood</h3>
+    <br><br>
+    <form [formGroup]="BloodForm" >
+      <div class=" row">
+        <label for="location" class="col-sm-2 col-form-label">Location</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="postLocation" formControlName="postLocation"
+                    placeholder="Village/Mandal/Division" list="locationData">
+                    <datalist id="locationData" >
+                        <option *ngFor="let item of locations">{{item.villageName}}</option>
+                      </datalist>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <label for="bloodGroup" class="col-sm-2 col-form-label">BloodGroup</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="bloodGroupName"
+           placeholder="blood" list="bloodGroupData">
+          <datalist id="bloodGroupData">
+            <option *ngFor="let data of bloodGroups " value={{data.Name}} > </option>
+          </datalist>
+        </div>
+      </div>
+  
+    </form>
+  
+  </div>
+  <br><br>
+  <div class="text-center">
+    <button class="btn btn-danger m-1" (click) = "searchBloodGroups()">Search</button>
+  </div>
+  <p *ngIf="showSuccessMessage">Successfully posted</p>
+  <div *ngIf="showErrorMessage">
+    <p>There is some problem while posting.</p>
+    <p>{{FailedErrorDetails?.message}}</p>
+  </div>

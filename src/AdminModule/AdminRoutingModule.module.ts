@@ -15,6 +15,7 @@ import { ComplaintstatusComponent } from './complaintstatus/complaintstatus.comp
 import { WelfarestatusComponent } from './welfarestatus/welfarestatus.component';
 import { AddWelfareComponent } from './add-welfare/add-welfare.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { BloodComponent } from './blood/blood.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'updateprofile',component:UpdateprofileComponent},
   {path: 'userdetails', component:UserDetailsComponent},
   {path: '',component:YoutubeuploadComponent},
-  {path:'livetv',component:LivetvComponent}
+  {path:'livetv',component:LivetvComponent},
+  {path: 'blood', component:BloodComponent}
 ];
 
 @NgModule({

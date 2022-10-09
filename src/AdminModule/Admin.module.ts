@@ -19,6 +19,7 @@ import { AddWelfareComponent } from './add-welfare/add-welfare.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { LivetvComponent } from './livetv/livetv.component';
+import { BloodComponent } from './blood/blood.component';
 
 
 
@@ -38,7 +39,8 @@ import { LivetvComponent } from './livetv/livetv.component';
     AddWelfareComponent,
     UpdateprofileComponent,
     UserDetailsComponent,
-    LivetvComponent
+    LivetvComponent,
+    BloodComponent
   ],
   imports: [
     CommonModule,
