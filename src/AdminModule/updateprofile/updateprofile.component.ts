@@ -18,6 +18,7 @@ export class UpdateprofileComponent implements OnInit {
     Firstname: new FormControl(""),
     startDate: new FormControl(""),
     genderLocation: new FormControl(""),
+    oldpic:new FormControl("")
   });
   fileToUpload:any;
   locations:villageDetails[];
@@ -29,6 +30,7 @@ export class UpdateprofileComponent implements OnInit {
   deleteSuccess: boolean = false;
   ifError: boolean = false;
   tableData: any;
+  profilepicture = "";
 
   constructor(private backendCallService: BackendcallService) {
     this.locations =[];
@@ -70,8 +72,17 @@ export class UpdateprofileComponent implements OnInit {
   }
  }
  SaveData(){
+  console.log(this.fileToUpload);
   const userDetails = localStorage.getItem("user");
   const userID = userDetails != null ? JSON.parse(userDetails).userId: "";
+  if(this.fileToUpload){
+    const imageData  = new FormData();
+    imageData.append("profilePic",this.fileToUpload);
+    imageData.append("userId",userID);
+    this.backendCallService.httpPost(imageData,`/netr/profile/updateProfilePic?apiVersion=1`).subscribe(x=>{
+  });
+   }
+  
   const formData = this.UpdateForm.value;
   console.log(formData);
     const dataToSendFormObj  = new FormData();
@@ -83,6 +94,7 @@ export class UpdateprofileComponent implements OnInit {
     dataToSendFormObj.append("dob", formData.startDate);
     dataToSendFormObj.append("address", formData.address);
     dataToSendFormObj.append("email", formData.Emailid);
+    dataToSendFormObj.append("otherPic",formData.oldpic);
     let villageid = this.locations.find(x => x.villageName == formData.postLocation)?.Id
     villageid = villageid ? villageid : 0;
     dataToSendFormObj.append("villageId",villageid.toString());
@@ -95,6 +107,7 @@ export class UpdateprofileComponent implements OnInit {
       else{
         this.showSuccessMessage =  true;
            this.showErrorMessage = false;
+           window.location.reload();
       }
     });
   
@@ -146,11 +159,19 @@ GetMyData(){
        this.UpdateForm.controls['Mobileno'].setValue(x.data.mobileNo);
        this.UpdateForm.controls['Lastname'].setValue(x.data.lastName);
        this.UpdateForm.controls['startDate'].setValue(x.data.dob);
-       this.UpdateForm.controls['postLocation'].setValue(x.data.village.villageName)
-
-
+       this.UpdateForm.controls['postLocation'].setValue(x.data.village.villageName);
+       this.UpdateForm.controls['oldpic'].setValue(x.data.otherPic);
+       if(x.data.otherPic && x.data.otherPic!=""){
+        this.profilepicture = x.data.otherPic;
+       }
+       else{
+        this.profilepicture = 'http://backend.myvdoc.in:5000/netr/' +x.data.profilePic;
+       }
     }
   }); 
+}
+handleFileInput(files:any) {
+  this.fileToUpload = files.files.item(0);
 }
   
 }
