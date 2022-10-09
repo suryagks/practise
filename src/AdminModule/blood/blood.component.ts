@@ -11,8 +11,8 @@ import { villageDetails } from '../add-post/add-post.component';
 })
 export class BloodComponent implements OnInit {
   BloodForm =new FormGroup({
-    postLocation: new FormControl(""),
-    bloodGroupName: new FormControl(""),
+    postLocation: new FormControl(0),
+    bloodGroupName: new FormControl(0),
     searchBloodGroups: new FormControl(""),
 
 
@@ -64,6 +64,7 @@ export class BloodComponent implements OnInit {
     });
   }
   searchBloodGroups(){
+    console.log(this.BloodForm.value)
     this.backendCallService.httpPost("",'/netr/bloodgroup/searchBloodGroup/{userId}?apiVersion=1').subscribe(x=> {
       this.data = x.data;
       console.log(this.data);
