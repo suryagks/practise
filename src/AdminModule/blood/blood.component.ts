@@ -25,6 +25,7 @@ export class BloodComponent implements OnInit {
   showSuccessMessage= false;
   showErrorMessage=false;
   FailedErrorDetails: any;
+  bloodgroupdata : any;
 
 
   constructor(private backendCallService: BackendcallService) {
@@ -64,10 +65,17 @@ export class BloodComponent implements OnInit {
     });
   }
   searchBloodGroups(){
-    console.log(this.BloodForm.value)
-    this.backendCallService.httpPost("",'/netr/bloodgroup/searchBloodGroup/{userId}?apiVersion=1').subscribe(x=> {
-      this.data = x.data;
+    const villageId = this.BloodForm.value.postLocation;
+    const BloodGroupId = this.BloodForm.value.bloodGroupName;
+
+    this.backendCallService.httpGet(`/netr/auth/bloodDonorslist?villageId=${villageId}&BGroupId=${BloodGroupId}&skip=1&apiVersion=1`).subscribe(x=> {
+      if(x instanceof Error) {
+        console.log("BloodGroup retrived on Errrorrrr!")
+      }
+      else {
+      this.bloodgroupdata = x.data;
       console.log(this.data);
+      }
     });
   }
 
