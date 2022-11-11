@@ -2,6 +2,14 @@
   <h3 class="text-center"> Update Profile</h3>
   <form [formGroup]="UpdateForm" (ngSubmit)=ConfirmSaveData()>
     <div class="mb-3">
+      <label for="updateProfile" class="form-label">Profile Picture</label>
+      &nbsp;&nbsp;
+      <img height="120" [src]="profilepicture" />
+      &nbsp;&nbsp;
+      <input id="file-upload" type="file" #FileInput accept="image/*" 
+      (change)="handleFileInput($event.target)" formControlName="attachments"/>
+    </div>
+    <div class="mb-3">
       <label for="updateProfile" class="form-label">Firstname</label>
             <input type="text" class="form-control" id="profileTitle" placeholder="" formControlName="Firstname">
     </div>

@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/shared/shared.module';
@@ -16,6 +17,9 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { WelfarestatusComponent } from './welfarestatus/welfarestatus.component';
 import { AddWelfareComponent } from './add-welfare/add-welfare.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { LivetvComponent } from './livetv/livetv.component';
+import { BloodComponent } from './blood/blood.component';
 
 
 
@@ -34,7 +38,9 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
     WelfarestatusComponent,
     AddWelfareComponent,
     UpdateprofileComponent,
-
+    UserDetailsComponent,
+    LivetvComponent,
+    BloodComponent
   ],
   imports: [
     CommonModule,

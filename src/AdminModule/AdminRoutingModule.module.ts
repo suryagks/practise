@@ -1,3 +1,5 @@
+import { LivetvComponent } from './livetv/livetv.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/AuthService/auth.guard';
@@ -13,6 +15,7 @@ import { ComplaintstatusComponent } from './complaintstatus/complaintstatus.comp
 import { WelfarestatusComponent } from './welfarestatus/welfarestatus.component';
 import { AddWelfareComponent } from './add-welfare/add-welfare.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { BloodComponent } from './blood/blood.component';
 
 
 const routes: Routes = [
@@ -29,7 +32,10 @@ const routes: Routes = [
   {path: 'welfarestatus',component:WelfarestatusComponent},
   {path: 'addwelfare',component:AddWelfareComponent},
   {path: 'updateprofile',component:UpdateprofileComponent},
-  {path: '',component:YoutubeuploadComponent}
+  {path: 'userdetails', component:UserDetailsComponent},
+  {path: '',component:YoutubeuploadComponent},
+  {path:'livetv',component:LivetvComponent},
+  {path: 'blood', component:BloodComponent}
 ];
 
 @NgModule({

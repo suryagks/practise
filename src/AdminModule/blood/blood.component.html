@@ -1,0 +1,62 @@
+<div class="card-container">
+    <h3 class="text-center">Blood</h3>
+    <br><br>
+    <form [formGroup]="BloodForm" >
+      <div class=" row">
+        <label for="location" class="col-sm-2 col-form-label">Location</label>
+        <div class="col-sm-10">
+          <select formControlName="postLocation" class="form-control">
+            <option value="0">Select Village</option>
+            <option *ngFor="let type of locations" [ngValue]="type.Id"> {{type.villageName}} </option>
+          </select>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <label for="bloodGroup" class="col-sm-2 col-form-label">BloodGroup</label>
+        <div class="col-sm-10">
+          <select formControlName="bloodGroupName" class="form-control">
+            <option value="0">Select Blood Type</option>
+            <option *ngFor="let type of bloodGroups" [ngValue]="type.Id"> {{type.Name}} </option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div>
+        <button class="btn btn-danger m-1" (click) = "searchBloodGroups()">Search</button>
+      </div>
+  
+    </form>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+          <th scope="col">User Name</th>
+          <th scope="col">Blood Group</th>
+          <th scope="col">Village</th>
+          <th scope="col">Mobile No.</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let blood of bloodgroupdata; index as i">
+          <td>{{blood.firstName}}&nbsp;{{blood.lastName}}</td>
+          <td>{{blood.bloodGroupName}}</td>
+          <td>{{blood.villageName}}</td>
+          <td>{{blood.mobileNo}}</td>
+      </tr>
+      <tr *ngIf="!bloodgroupdata" class="text-center">
+        <td></td>
+        <td>
+          No Data Found 
+        </td><td></td><td></td>
+          
+      </tr>
+      </tbody>
+      </table>
+  </div>
+  <br><br>
+  
+  <p *ngIf="showSuccessMessage">Successfully posted</p>
+  <div *ngIf="showErrorMessage">
+    <p>There is some problem while posting.</p>
+    <p>{{FailedErrorDetails?.message}}</p>
+  </div>

@@ -22,6 +22,7 @@ export class YoutubeuploadComponent implements OnInit {
  
   ngOnInit(): void
   {
+    this.GetLinkTypeMaster();
     this.GetAllYoutubeLinks();
   }
   isFormValid: boolean = true;
@@ -31,6 +32,17 @@ export class YoutubeuploadComponent implements OnInit {
     youtubeLink: new FormControl("", Validators.required),
     linkType: new FormControl("", Validators.required)
   });
+
+  private GetLinkTypeMaster() {
+    this.backendcallService.httpGet("/netr/youtubelinks/getAllLinkTypes?apiVersion=1").subscribe(x => {
+      if (x instanceof Error) {
+        this.statusMessage = "some issue while editing the links";
+      }
+      else {
+        this.youtubeLinkTypes = x.data;
+      }
+    });
+  }
 
   uploadYoutubeLink(){
     if(this.youtubeLinkForm.valid)

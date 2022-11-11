@@ -29,6 +29,7 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLocations();
+    
   }
   loadLocations(){
     this.backendCallService.httpPost("",'/netr/village/getAllVillages?apiVersion=1').subscribe(x=> {
@@ -55,7 +56,7 @@ export class AddPostComponent implements OnInit {
     villageid = villageid ? villageid : 0;
     dataToSendFormObj.append("villageId",villageid.toString());
     dataToSendFormObj.append("status","2");
-    dataToSendFormObj.append("isDevelopmentPost","1");
+    dataToSendFormObj.append("isDevelopmentPost","0");
     
     if(this.fileToUpload){
       console.log(this.fileToUpload)
